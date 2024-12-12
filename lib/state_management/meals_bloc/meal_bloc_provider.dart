@@ -6,7 +6,7 @@ import 'package:tp_flutter_bloc_etd/state_management/meals_bloc/meal_state.dart'
 
 class MealBlocProvider extends Bloc<AbstractAppEvent, AbstractAppState> {
   MealBlocProvider() : super(const MealInitializationState(isLoading: false)) {
-    /******************************************Course Event Initalization**************************************/
+    /******************************************Meal Event Initalization**************************************/
 
     on<MealEventInitalization>((event, emit) async {
       emit(
@@ -15,7 +15,5 @@ class MealBlocProvider extends Bloc<AbstractAppEvent, AbstractAppState> {
         ),
       );
     });
-
-/******************************************Course Event Initalization**************************************/
   }
 }
