@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:tp_flutter_bloc_etd/components/ingrediant_card.dart';
+import 'package:tp_flutter_bloc_etd/components/meal_card.dart';
 import 'package:tp_flutter_bloc_etd/components/my_button.dart';
-import 'package:tp_flutter_bloc_etd/models/ingrediant_model.dart';
 import 'package:tp_flutter_bloc_etd/models/meal_model.dart';
 
 class AddNewMealAPIPage extends StatefulWidget {
@@ -13,18 +11,11 @@ class AddNewMealAPIPage extends StatefulWidget {
 }
 
 class _AddNewMealAPIPageState extends State<AddNewMealAPIPage> {
-  final TextEditingController mealNameCTRL = TextEditingController();
-  final TextEditingController mealImgCTRL = TextEditingController();
+  List<MealModel> selectedMealList = [];
 
-  final TextEditingController ingrediantNameCTRL = TextEditingController();
-  final TextEditingController ingrediantQuantityCTRL = TextEditingController();
-  List<IngrediantModel> listOfIngrediants = [];
-
-  GlobalKey<FormState> keyFormState = GlobalKey<FormState>();
-
-  void removeIngrediant(IngrediantModel ingrediantTMP) {
+  void removeSelectedMeal(MealModel mealTMP) {
     setState(() {
-      listOfIngrediants.removeWhere((element) => element == ingrediantTMP);
+      //to do
     });
   }
 
@@ -48,6 +39,7 @@ class _AddNewMealAPIPageState extends State<AddNewMealAPIPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                //Selected meals Container
                 Container(
                   padding: const EdgeInsets.all(8.0),
                   child: Card(
@@ -70,11 +62,10 @@ class _AddNewMealAPIPageState extends State<AddNewMealAPIPage> {
                             child: ListView.builder(
                               scrollDirection: Axis.vertical,
                               physics: const AlwaysScrollableScrollPhysics(),
-                              itemCount: listOfIngrediants.length,
+                              itemCount: selectedMealList.length,
                               itemBuilder: (context, index) {
-                                return IngrediantCard(
-                                  ingrediantTMP: listOfIngrediants[index],
-                                  removeIngrediant: removeIngrediant,
+                                return MealCard(
+                                  mealTMP: selectedMealList[index],
                                 );
                               },
                             ),
@@ -88,29 +79,9 @@ class _AddNewMealAPIPageState extends State<AddNewMealAPIPage> {
                 MyButton(
                   butLabel: "Save",
                   onePressed: () async {
-                    if (keyFormState.currentState!.validate()) {
-                      //
-                      MealModel mealTMP = MealModel(
-                        name: mealNameCTRL.text,
-                        imgPath: mealImgCTRL.text,
-                        listOfIngrediant: listOfIngrediants,
-                      );
+                    //Todo
 
-                      Navigator.pop(
-                        context,
-                        mealTMP,
-                      );
-                    } else {
-                      Fluttertoast.showToast(
-                        msg: "Your entries isn't valide",
-                        toastLength: Toast.LENGTH_SHORT,
-                        gravity: ToastGravity.CENTER,
-                        timeInSecForIosWeb: 1,
-                        backgroundColor: Colors.red,
-                        textColor: Colors.white,
-                        fontSize: 16.0,
-                      );
-                    }
+                    Navigator.pop(context);
                   },
                 )
               ],
