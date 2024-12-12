@@ -57,16 +57,16 @@ class _AddNewMealAPIPageState extends State<AddNewMealAPIPage> {
                               ),
                             ),
                           ),
+                          Divider(),
                           SizedBox(
-                            height: 150,
+                            height: 80,
                             child: ListView.builder(
                               scrollDirection: Axis.vertical,
                               physics: const AlwaysScrollableScrollPhysics(),
                               itemCount: selectedMealList.length,
                               itemBuilder: (context, index) {
-                                return MealCard(
-                                  mealTMP: selectedMealList[index],
-                                );
+                                return Text(
+                                    "${index}- ${selectedMealList[index].name}");
                               },
                             ),
                           )

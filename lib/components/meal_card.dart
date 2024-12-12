@@ -9,11 +9,15 @@ class MealCard extends StatelessWidget {
   Widget build(BuildContext context) {
     print(mealTMP.imgPath);
     return Card(
-      color: Colors.blue,
-      child: Column(
+      child: Row(
         children: [
-          Image.network(
-            mealTMP.imgPath,
+          Container(
+            margin: EdgeInsets.all(8),
+            height: 100,
+            width: 100,
+            child: Image.network(
+              mealTMP.imgPath,
+            ),
           ),
           Text(mealTMP.name),
           // Text(mealTMP.imgPath),

@@ -91,20 +91,8 @@ class DayCard extends StatelessWidget {
                 final createdMeal = await Navigator.pushNamed(
                   context,
                   InternalRoute.getRouteAddNewMeal(),
-                  arguments: dayTMP.listOfMeals,
+                  arguments: dayTMP,
                 );
-
-                // Require cast to MealModel
-                if (createdMeal != null) {
-                  dayTMP.listOfMeals.add(createdMeal as MealModel);
-
-                  //--------------------------------------------------------------
-                  final currentBox =
-                      await Hive.openBox<DayMealModel>(dayTMP.dayName);
-
-                  currentBox.put(dayTMP.dayName, dayTMP);
-                  //--------------------------------------------------------------
-                }
               },
               child: Icon(
                 Icons.add,

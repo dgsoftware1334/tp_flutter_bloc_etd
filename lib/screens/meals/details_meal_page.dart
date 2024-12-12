@@ -8,10 +8,13 @@ class DetailsMealPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<MealModel> myListOfMeals = [];
     // Récupérer les arguments une seule fois
-    final receivedData =
-        ModalRoute.of(context)?.settings.arguments as List<MealModel>;
-    final List<MealModel> myListOfMeals = receivedData;
+    if (ModalRoute.of(context)?.settings.arguments != null) {
+      final receivedData =
+          ModalRoute.of(context)?.settings.arguments as List<MealModel>;
+      myListOfMeals = receivedData;
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -27,11 +30,9 @@ class DetailsMealPage extends StatelessWidget {
       ),
 
       // Body
-      body: GridView.builder(
-        // Centrer les éléments verticalement
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-        ),
+      body: ListView.builder(
+        scrollDirection: Axis.vertical,
+        physics: const AlwaysScrollableScrollPhysics(),
         itemCount: myListOfMeals.length,
         itemBuilder: (context, index) {
           return MealCard(mealTMP: myListOfMeals[index]);
